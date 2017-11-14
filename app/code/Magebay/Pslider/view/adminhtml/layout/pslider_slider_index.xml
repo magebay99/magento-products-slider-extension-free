@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Product Slider Pro [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: pslider_slider_index.xml
+ * @CREATED	: 10:37 AM , 29/02/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <update handle="pslider_slider_grid_block"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magebay\Pslider\Block\Adminhtml\Slider" name="pslider.slider.container"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Blog Module [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: acl.xml
+ * @CREATED	: 8:36 AM , 17/03/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                    <resource id="Magebay_Pslider::elements" title="Product Slider" sortOrder="10">
+                        <resource id="Magebay_Pslider::pslider" title="Item Manager" sortOrder="10" />
+                        <resource id="Magebay_Pslider::cats" title="Group Manager" sortOrder="20" />
+                        <resource id="Magebay_Pslider::config" title="Settings" sortOrder="20" />
+                    </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

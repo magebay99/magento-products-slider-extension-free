@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Product Slider Pro [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: pslider_cats_index.xml
+ * @CREATED	: 8:47 AM , 01/03/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="formkey"/>
+    <update handle="pslider_cats_grid_block"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magebay\Pslider\Block\Adminhtml\Cats" name="pslider.cats.container"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Product Slider Pro [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: pslider_cats_edit.xml
+ * @CREATED	: 8:55 AM , 04/03/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magebay\Pslider\Block\Adminhtml\Cats\Edit" name="pslider_cats_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Magebay\Pslider\Block\Adminhtml\Cats\Edit\Tabs" name="pslider_cats_edit_tabs">
+                                <!--<block class="Magebay\Pslider\Block\Adminhtml\Cats\Edit\Tab\Main" name="pslider_cats_edit_tab_main"/>-->
+                                <action method="addTab">
+                                    <argument name="name" xsi:type="string">main_section</argument>
+                                    <argument name="block" xsi:type="string">pslider_cats_edit_tab_main</argument>
+                                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

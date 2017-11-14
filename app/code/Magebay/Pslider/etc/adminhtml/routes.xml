@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Product Slider Pro [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: routes.xml
+ * @CREATED	: 8:19 AM , 29/02/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="pslider" frontName="pslider">
+            <module name="Magebay_Pslider" />
+        </route>
+    </router>
+</config>

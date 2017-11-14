@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+=====================================================
+			     -:- Z-Programing -:-
+=====================================================
+ * @PROJECT	: Product Slider Pro [ Magebay.com ]
+ * @AUTHOR	: Zuko
+ * @FILE	: config.xml
+ * @CREATED	: 9:55 AM , 09/03/2016
+ * @DETAIL	: 
+=====================================================
+=====================================================
+**/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magebay_pslider>
+            <setting>
+                <enable>1</enable>
+                <maxproduct>12</maxproduct>
+                <slideritem>6</slideritem>
+                <showprice>1</showprice>
+                <showaddcart>1</showaddcart>
+                <showreviews>1</showreviews>
+                <autoplay>1</autoplay>
+                <autotimeout>5000</autotimeout>
+                <navigation>1</navigation>
+                <stoponhover>0</stoponhover>
+                <sliderspeed>250</sliderspeed>
+            </setting>
+        </magebay_pslider>
+    </default>
+</config>
