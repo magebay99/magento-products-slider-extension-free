@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
-=====================================================
-			     -:- Z-Programing -:-
-=====================================================
- * @PROJECT	: Product Slider Pro [ Magebay.com ]
- * @AUTHOR	: Zuko
- * @FILE	: pslider_slider_grid_block.xml
- * @CREATED	: 3:49 PM , 29/02/2016
- * @DETAIL	: 
-=====================================================
-=====================================================
-**/
--->
+<!-- /**
+ * Magiccart 
+ * @category    Magiccart 
+ * @copyright   Copyright (c) 2014 Magiccart (http://www.magiccart.net/) 
+ * @license     http://www.magiccart.net/license-agreement.html
+ * @Author: DOng NGuyen<nguyen@dvn.com>
+ * @@Create Date: 2016-02-23 18:59:34
+ * @@Modify Date: 2016-03-09 17:44:40
+ * @@Function:
+ */ -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceBlock name="pslider.slider.container">

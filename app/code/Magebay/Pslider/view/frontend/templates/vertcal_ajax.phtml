@@ -11,54 +11,25 @@
 
 use Magento\Framework\App\Action\Action;
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
-$sliderlist = $block->getList();
-$prefixStr = '#pslider';
-if($sliderlist):
-foreach ($sliderlist as $item) {
-    $processed = [];
-    $hrefurl = $prefixStr . $item->getId();
-    $tabdivid = str_replace('#','',$hrefurl);
-    $owldivid = str_replace('#','owl-',$hrefurl);
-    ?>
-    <div id="<?=$tabdivid?>">
-        <h2><?=$item->getTitle()?></h2>
-        <?php
-        $dataSlider = $block->getItemByType($item->getCategoryId(),$item->getTypeId());
-        //
-        // OWL
-        //
-        ?>
-        <div id="<?=$owldivid?>">
-            <?php foreach($dataSlider as $_product){
-                if($_product->getStatus() == 0 || array_key_exists($_product->getId(),$processed))
-                {
-                    continue;
-                }
-                $processed[$_product->getId()] = 1;
-                $productSets = $block->isElementOfSet($_product->getId());
-                if($productSets)
-                {
-                    if(array_key_exists($productSets[0],$processed))
-                    {
-                        continue;
-                    }
-                    $processed[$productSets[0]] = 1;
-                    $_product = $block->getProductDetail($productSets[0]);
-                }
-                ?>
-                <div class="item">
-						<div class="product-top">
+?>
+<div id="pslider<?php echo $block->getTabId(); ?>" class="mst-content-tab products-grid">
+	<?php $dataSlider = $block->getItemByType($block->getCatId(),$block->getType()); ?>
+	<?php if(count($dataSlider)>0){ ?>
+		<div id="owl-pslider<?php echo $block->getTabId(); ?>" class="owl-carousel">
+			<?php foreach($dataSlider as $_product){ ?>
+				<div class="item">
+					<div class="product-top">
 							<a href="<?php echo $_product->getProductUrl() ?>"
 							   title="<?php echo $block->stripTags($block->getImageLabel($_product, 'small_image'), null, true) ?>"
 							   class="product-image" >
-								<?php echo $block->absblock->getImage($_product,'category_page_grid')->toHtml(); ?></a>							
+								<?php echo $block->getImage($_product,'category_page_grid')->toHtml(); ?></a>							
 							<div data-role="add-to-links" class="actions-secondary">
 								<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
 									<a href="#"
 										class="action towishlist"
 										title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
 										aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
-										data-post='<?php /* @escapeNotVerified */ echo $block->absblock->getAddToWishlistParams($_product); ?>'
+										data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
 										data-action="add-to-wishlist"
 										role="button">
 										<i class="fa fa-heart-o"></i>
@@ -87,19 +58,19 @@ foreach ($sliderlist as $item) {
                                     <?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                                 </a>
                             </h2>
-                            <?php if($block->tempSetting->showreviews)	echo( $block->absblock->getReviewsSummaryHtml($_product,'short',true)); ?>
+                            <?php if($block->tempSetting->showreviews)	echo $block->getReviewsSummaryHtml($_product,'short',true); ?>
                             <?php /* @escapeNotVerified */
-                            if($block->tempSetting->showprice) echo $block->absblock->getProductPrice($_product) ?>
-							<?php if ( $block->tempSetting->showaddcart )  { ?>
+                            if($block->tempSetting->showprice) echo $block->getProductPrice($_product); ?>
+							<?php if($block->tempSetting->showaddcart){ ?>
 								<div class="actions-primary">
 									<?php if($_product->isSaleable()): ?>
-										<?php $postParams = $block->absblock->getAddToCartPostParams($_product); ?>
+										<?php $postParams = $block->getAddToCartPostParams($_product); ?>
 										<form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
 											<input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
 											<input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
-											<?php echo $block->absblock->getBlockHtml('formkey')?>
+											<?php echo $block->getBlockHtml('formkey')?>
 											<button type="submit"
-													title="<?php echo $block->absblock->escapeHtml(__('Add to Cart')); ?>"
+													title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
 													class="action tocart primary">
 												<span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
 											</button>
@@ -110,32 +81,23 @@ foreach ($sliderlist as $item) {
 								</div>
 							<?php } ?>
                         </div>
-                    </div>
-                <?php
-            }?>
-        </div>
-        <script type="text/javascript">
+				</div>
+			<?php } ?>
+		</div>
+		<script type="text/javascript">
                 require(["jquery","magebay/owlcarousel"], function($){
-                    $('#<?=$owldivid?>').owlCarousel({
+                    $('#owl-pslider<?php echo $block->getTabId(); ?>').owlCarousel({
                         autoplay: <?=$block->_configHelper->getAutoplay()?>,
                         autoplayTimeout: <?=$block->_configHelper->getAutotimeout()?>,
 						stopOnHover: <?=$block->_configHelper->getAutoplay()?>,
 						slideSpeed:  <?=$block->_configHelper->getSliderSpeed()?>,						
-						<?php if($block->_configHelper->getNavigation()==1): ?>
-							nav:true,
-							dots: false,
-						<?php elseif($block->_configHelper->getNavigation()==2): ?>
-							nav:true,
-							dots: true,
-						<?php else: ?>	
-							dots: false,
-						<?php endif; ?>
 						//loop:true,
 						responsiveClass:true,
 						responsive:{
 							0:{
 								margin:10,
-								items:1								
+								items:1
+								
 							},
 							375:{
 								margin:10,
@@ -145,20 +107,21 @@ foreach ($sliderlist as $item) {
 								margin:10,
 								items:3
 							},
+							768:{
+								margin:10,
+								items:2
+							},
 							992:{
 								margin:10,
-								items:4
+								items:3
 							},
 							1200:{
 								margin:20,
-								items:<?=$block->_configHelper->getSliderItem()?>
+								items:<?=$block->_configHelper->getSliderItem()-1; ?>
 							}
 						}
                     });
                 });
-            </script>
-    </div>
-    <?php
-}
-endif;
-?>
+        </script>
+	<?php }else { echo __('We can\'t find products matching the selection.'); } ?>
+</div>

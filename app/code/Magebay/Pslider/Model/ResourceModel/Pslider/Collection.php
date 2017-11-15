@@ -1,17 +1,13 @@
 <?php
 /**
-=====================================================
-			     -:- Z-Programing -:-
------------------------------------------------------
- * @PROJECT	: Product Slider Pro [ Magebay.com ]
- * @AUTHOR	: Zuko
- * @FILE	: Collection.php
- * @CREATED	: 8:55 AM , 22/02/2016
- * @DETAIL	: 
------------------------------------------------------
-=====================================================
-**/
-
+ * Magebay 
+ * @category    Magebay 
+ * @copyright   Copyright (c) 2017 Magebay (http://magebay.com/) 
+ * @Author: Hanh Nguyen<hanhkaka.nguyen37@gamil.com>
+ * @@Create Date: 2017-05-5
+ * @@Modify Date: 2017-06-05
+ */
+/*--------------------*/
 
 namespace Magebay\Pslider\Model\ResourceModel\Pslider;
 

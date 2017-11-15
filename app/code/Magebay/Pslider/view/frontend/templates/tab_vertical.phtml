@@ -7,45 +7,40 @@
  * @@Create Date: 2017-05-5
  * @@Modify Date: 2017-06-05
  */
+ 
 use Magento\Framework\App\Action\Action;
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $sliderlist = $block->getList();
 $idBlock = uniqid();
-$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
 ?>
-
-<div id="tab-container-<?=$idBlock?>" class="pslider tabslide">
-    <ul class='list-tab'>
-        <?php
-        $prefixStr = '#pslider';
+<?php if(count($sliderlist)>0){ ?>
+<div id="tab-container-<?=$idBlock?>" class="pslider tab-vertcal">		
+	<h3 class="subtitle"><span class="a-mobile tab-trigger tab-trigger-<?php echo $idBlock?>"><i class="fa fa-bars"></i></span><?php echo $block->getTitle(); ?></h3>
+	<ul class='list-tab-vertcal'>	
+		<?php
+		$prefixStr = '#pslider';
 		$i=1;
-        foreach ($sliderlist as $item)
-        {
-            $hrefurl = $prefixStr . $item->getId();
-            $title = $item->getTitle();
-            ?>
-            <li class='tab<?php if($i==1):?> active loaded<?php endif; ?>' data-cat='<?php echo $item->getCategoryId(); ?>' data-type='<?php echo $item->getTypeId(); ?>' data-active="<?=$item->getId()?>"><span><?=$title?></span></li>
+		foreach ($sliderlist as $item)
+		{
+			$hrefurl = $prefixStr . $item->getId();
+			$title = $item->getTitle();
+			?>
+			<li class='tab<?php if($i==1):?> active loaded<?php endif; ?>'  data-cat='<?php echo $item->getCategoryId(); ?>' data-type='<?php echo $item->getTypeId(); ?>' data-active="<?=$item->getId()?>"><span class="a-mobile tab-trigger-link"></span><span><?=$title?></span></li>
 			<?php if($i==1): $itemAc = $item; endif; ?>
-        <?php
-		$i++;
-        }
-        ?>
-
-    </ul>
-	<div class="tabslide-content">
-    <div class="ajax_loading ajax_loading_<?php echo $idBlock?>" style="display:none" data-url="<?php echo $this->getUrl('pslider/index/ajax')?>"><i class="fa fa-spinner"></i></div>
-	<?php
-    //foreach ($sliderlist as $item) {
+		<?php $i++; } ?>
+	</ul>
+	<div class="tab-vertcal-content">
+	<div class="ajax_loading ajax_loading_<?php echo $idBlock?>" style="display:none" data-url="<?php echo $this->getUrl('pslider/index/ajax')?>"><i class="fa fa-spinner"></i></div>
+    <?php
         $processed = [];
         $hrefurl = $prefixStr . $itemAc->getId();
         $tabdivid = str_replace('#','',$hrefurl);
         $owldivid = str_replace('#','owl-',$hrefurl);
         ?>
-        <?php $dataSlider = $block->getItemByType($itemAc->getCategoryId(),$itemAc->getTypeId()); ?>
-		
+        <?php $dataSlider = $block->getItemByType($itemAc->getCategoryId(),$itemAc->getTypeId()); ?>		
 		<div id="<?=$tabdivid?>" class="mst-content-tab products-grid active">
             <?php if(count($dataSlider)>0){ ?>
-			<div id="<?=$owldivid?>" class="owl-carousel">
+			<div id="<?=$owldivid?>" class="owl-carousel owl-theme">
                 <?php foreach($dataSlider as $_product){ ?>
                     <div class="item">
 						<div class="product-top">
@@ -122,21 +117,13 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
                         autoplayTimeout: <?=$block->_configHelper->getAutotimeout()?>,
 						stopOnHover: <?=$block->_configHelper->getAutoplay()?>,
 						slideSpeed:  <?=$block->_configHelper->getSliderSpeed()?>,						
-						<?php if($block->_configHelper->getNavigation()==1): ?>
-							nav:true,
-							dots: false,
-						<?php elseif($block->_configHelper->getNavigation()==2): ?>
-							nav:true,
-							dots: true,
-						<?php else: ?>	
-							dots: false,
-						<?php endif; ?>
 						//loop:true,
 						responsiveClass:true,
 						responsive:{
 							0:{
 								margin:10,
-								items:1								
+								items:1
+								
 							},
 							375:{
 								margin:10,
@@ -146,29 +133,31 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
 								margin:10,
 								items:3
 							},
+							768:{
+								margin:10,
+								items:2
+							},
 							992:{
 								margin:10,
-								items:4
+								items:3
 							},
 							1200:{
 								margin:20,
-								items:<?=$block->_configHelper->getSliderItem()?>
+								items:<?=$block->_configHelper->getSliderItem()-1; ?>
 							}
 						}
-                    });
+                    });					
                 });
             </script>
 			<?php }else { echo __('We can\'t find products matching the selection.'); } ?>
         </div>
-		
-        <?php // } ?>
 	</div>
 </div>
 <script type="text/javascript">
     require(["jquery"], function($){
-		$('#tab-container-<?php echo $idBlock?> .list-tab .tab').click(function() {			
+		$('#tab-container-<?php echo $idBlock?> .list-tab-vertcal .tab').click(function() {			
 			if($(this).hasClass('active')) return;
-			$('#tab-container-<?php echo $idBlock?> .list-tab .tab').removeClass('active');
+			$('#tab-container-<?php echo $idBlock?> .list-tab-vertcal .tab').removeClass('active');
 			$(this).addClass('active');
 			if(!$(this).hasClass('loaded')){
 				var type =$(this).attr('data-type');
@@ -179,7 +168,7 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
 			}
 			var contentActive = '#pslider' + $(this).attr('data-active');
 			$('#tab-container-<?php echo $idBlock?> .mst-content-tab').removeClass('active');
-			$('#tab-container-<?php echo $idBlock?> .tabslide-content').find(contentActive).addClass('active');
+			$('#tab-container-<?php echo $idBlock?> .tab-vertcal-content').find(contentActive).addClass('active');
 		});
 		function sendAjax(type, catId, tabId) {
 			$('.ajax_loading_<?php echo $idBlock?>').show();
@@ -187,13 +176,19 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
 				url : $('.ajax_loading').attr('data-url'),
 				dataType : 'json',
 				type : 'POST',
-				data: { type: type, catId: catId, tabId: tabId }			
+				data: { type: type, catId: catId, tabId: tabId,vertcal:1 }			
 			}).done(function (data) {					
 				$('.ajax_loading_<?php echo $idBlock?>').hide();
-				$('#tab-container-<?php echo $idBlock?> .tabslide-content').append(data.html_result);
-				$('#tab-container-<?php echo $idBlock?> .tabslide-content').find('#pslider'+tabId).addClass('active');
+				$('#tab-container-<?php echo $idBlock?> .tab-vertcal-content').append(data.html_result);
+				$('#tab-container-<?php echo $idBlock?> .tab-vertcal-content').find('#pslider'+tabId).addClass('active');
 			});
 	    }
+		$('.tab-trigger-<?php echo $idBlock?>').click(function() {
+			$('#tab-container-<?php echo $idBlock?> .list-tab-vertcal').slideToggle(200);
+		});	
+		$('.tab-trigger-link').click(function() {
+			$('.list-tab-vertcal').slideUp(200);
+		});	
     });
 </script>
 <?php if (!$block->absblock->isRedirectToCartEnabled()) : ?>
@@ -205,3 +200,4 @@ $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VI
         }
     </script>
 <?php endif; ?>
+<?php } ?>

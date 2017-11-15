@@ -10,11 +10,11 @@
  * @@Function:
  */ -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <update handle="formkey"/>
-    <update handle="pslider_slider_grid_block"/>
-    <body>
-        <referenceContainer name="content">
-            <block class="Magebay\Pslider\Block\Adminhtml\Slider" name="pslider.slider.container"/>
-        </referenceContainer>
-    </body>
+    <head>
+        <css src="Magebay_Pslider::css/font-awesome.min.css"/>
+        <css src="Magebay_Pslider::owlcarousel/owl.carousel.css"/>
+        <css src="Magebay_Pslider::owlcarousel/owl.theme.css"/>
+        <css src="Magebay_Pslider::owlcarousel/owl.transitions.css"/>
+        <css src="Magebay_Pslider::css/pslider.css" />
+    </head>
 </page>

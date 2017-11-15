@@ -1,21 +1,15 @@
 <?php
 /**
-=====================================================
-			     -:- Z-Programing -:-
------------------------------------------------------
- * @PROJECT	: Product Slider Pro [ Magebay.com ]
- * @AUTHOR	: Zuko
- * @FILE	: ConfigHelper.php
- * @CREATED	: 3:09 PM , 07/03/2016
- * @DETAIL	: 
------------------------------------------------------
-=====================================================
-**/
-
-
+ * Magebay 
+ * @category    Magebay 
+ * @copyright   Copyright (c) 2017 Magebay (http://magebay.com/) 
+ * @Author: Hanh Nguyen<hanhkaka.nguyen37@gamil.com>
+ * @@Create Date: 2017-05-5
+ * @@Modify Date: 2017-06-05
+ */
+/*--------------------*/
 
 namespace Magebay\Pslider\Helper;
-
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -23,7 +17,6 @@ use Magento\Framework\App\Helper\Context;
 
 class ConfigHelper extends AbstractHelper{
     CONST ENABLE = 'magebay_pslider/setting/enable';
-//    CONST JQUERY = 'magebay_pslider/setting/jquery';
     CONST MAXPRODUCT = 'magebay_pslider/setting/maxproduct';
     CONST SLIDERITEM = 'magebay_pslider/setting/slideritem';
     CONST SHOWPRICE = 'magebay_pslider/setting/showprice';

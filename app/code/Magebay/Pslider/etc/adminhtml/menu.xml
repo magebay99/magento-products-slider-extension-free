@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-/**
-=====================================================
-			     -:- Z-Programing -:-
-=====================================================
- * @PROJECT	: Product Slider Pro [ Magebay.com ]
- * @AUTHOR	: Zuko
- * @FILE	: menu.xml
- * @CREATED	: 9:45 AM , 27/02/2016
- * @DETAIL	: 
-=====================================================
-=====================================================
-**/
--->
+<!-- /**
+ * Magiccart 
+ * @category    Magiccart 
+ * @copyright   Copyright (c) 2014 Magiccart (http://www.magiccart.net/) 
+ * @license     http://www.magiccart.net/license-agreement.html
+ * @Author: DOng NGuyen<nguyen@dvn.com>
+ * @@Create Date: 2016-02-23 18:59:34
+ * @@Modify Date: 2016-03-09 17:44:40
+ * @@Function:
+ */ -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <update id="bigmarket" title="Bigmarket" module="Magebay_Pslider" sortOrder="15" resource="Magebay_Pslider::elements"/>
-		<add id="Magebay_Pslider::elements" title="Product Slider Pro" module="Magebay_Pslider" parent="bigmarket" sortOrder="15" resource="Magebay_Pslider::elements" />
+		<add id="Magebay_Pslider::elements" title="Product Slider Pro" module="Magebay_Pslider" sortOrder="15" resource="Magebay_Pslider::elements" />
         <add id="Magebay_Pslider::pslider" title="Manage Item" module="Magebay_Pslider" sortOrder="0" parent="Magebay_Pslider::elements" action="pslider/slider" resource="Magebay_Pslider::pslider"/>
         <add id="Magebay_Pslider::cats" title="Manage Group" module="Magebay_Pslider" sortOrder="1" parent="Magebay_Pslider::elements" action="pslider/cats" resource="Magebay_Pslider::cats"/>
         <add id="Magebay_Pslider::config" title="Setting" module="Magebay_Pslider" sortOrder="1" parent="Magebay_Pslider::elements" action="adminhtml/system_config/edit/section/magebay_pslider" resource="Magebay_Pslider::config"/>
