@@ -77,8 +77,7 @@ abstract class Slider extends Action
         // load layout, set active menu and breadcrumbs
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Magebay_Pslider::pslider')
-            ->addBreadcrumb(__('Product Slider Pro'), __('Product Slider Pro'))
+        $resultPage->addBreadcrumb(__('Product Slider Pro'), __('Product Slider Pro'))
             ->addBreadcrumb(__('Manage Item'), __('Manage Item'));
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Item'));
         return $resultPage;
