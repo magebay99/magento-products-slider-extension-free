@@ -68,8 +68,7 @@ abstract class PsliderCats extends Action{
         // load layout, set active menu and breadcrumbs
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Magebay_Pslider::cats')
-            ->addBreadcrumb(__('Product Slider Pro'), __('Product Slider Pro'))
+        $resultPage->addBreadcrumb(__('Product Slider Pro'), __('Product Slider Pro'))
             ->addBreadcrumb(__('Manage Group'), __('Manage Group'));
         $resultPage->getConfig()->getTitle()->prepend(__('Manage Group'));
         return $resultPage;
